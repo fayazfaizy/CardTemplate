@@ -3,6 +3,7 @@ public class Card {
     public String rank;
     public String color;
     public int value;
+    public final String[] SUITS = {"Clubs", "Spades","Diamonds", "Hearts", ""};
 
     public Card( String color, String suit, String rank, int value){
         this.suit = suit;
@@ -12,8 +13,8 @@ public class Card {
     }
 
     public int compareValue(Card card){
-        int val1 = value == 1 && card.value == 13 ? 14 : value;
-        int val2 = card.value == 1 && value == 13 ? 14 : card.value;
+        int val1 = getCardValue(this, card);
+        int val2 = getCardValue(card, this);
 
         if( val1 < val2){
             return -1;
@@ -23,12 +24,15 @@ public class Card {
         return 0;
     }
 
+    private int getCardValue(Card c1, Card c2){
+        return (c1.value == 14 && c2.value == 2) ? 1 : c1.value;
+    }
+
     public boolean compareSuit(Card card){
         return suit.equals(card.suit);
     }
 
     public int suitValue(){
-        final String[] SUITS = {"Clubs", "Spades","Diamonds", "Hearts"};
         for( int i = 0; i < SUITS.length; i++) {
             if (suit.equals(SUITS[i])) {
                 return i;
@@ -38,4 +42,15 @@ public class Card {
         return -1;
     }
 
+    @Override
+    public String toString() {
+        final String[] SUITS_UNICODE = {"\u2663", "\u2660", "\u2666", "\u2665", "\uD83C\uDCCF"};
+        int index = 0;
+        for(int i = 0; i < SUITS_UNICODE.length; i++){
+            if( this.suit.equals(SUITS[i])){
+                index = i;
+            }
+        }
+        return this.rank + SUITS_UNICODE[index];
+    }
 }

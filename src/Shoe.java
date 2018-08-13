@@ -5,14 +5,12 @@ public class Shoe {
 
     private final String[] SUITS = {"Clubs", "Spades","Diamonds", "Hearts"};
     private final String[] COLORS ={"Black", "Black", "Red", "Red"};
-    private final String[] RANKS = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-    private final int[] VALUE = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-    private int deckCount;
+    private final String[] RANKS = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+    private final int[] VALUE = { 14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
     public ArrayList<Card> shoeCards;
 
     public Shoe(int deckCount, int jokerCount){
         shoeCards = new ArrayList<Card>();
-        this.deckCount = deckCount;
 
         for( int i = 0; i < deckCount; i++ ){
             shoeCards.addAll(generateDeck());
